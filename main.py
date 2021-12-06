@@ -23,8 +23,7 @@ window.config(bg=WHITE)
 algorithm_name = StringVar()
 speed_name = StringVar()
 data = []
-algo_list = ['Bubble Sort', 'Insertion Sort', 'Selection Sort', 'Merge Sort', 'Quick Sort', 'Heap Sort',
-             'Counting Sort', "Radix sort"]
+algo_list = ['Bubble Sort', 'Insertion Sort', 'Selection Sort', 'Merge Sort', 'Quick Sort', 'Heap Sort', 'Counting Sort']
 speed_list = ['Fast', 'Medium', 'Slow']
 
 
@@ -75,8 +74,6 @@ def sort():
 
     if algo_menu.get() == 'Bubble Sort':
         bubble_sort(data, drawData, timeTick)
-    elif algo_menu.get() == 'Radix Sort':
-        radix_sort(data, drawData, timeTick)
     elif algo_menu.get() == 'Selection Sort':
         selection_sort(data, drawData, timeTick)
     elif algo_menu.get() == 'Insertion Sort':
