@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 import random
+
+from algorithms.radixSort import radix_sort
 from colors import *
 
 # Importing algorithms 
@@ -12,18 +14,17 @@ from algorithms.quickSort import quick_sort
 from algorithms.heapSort import heap_sort
 from algorithms.countingSort import counting_sort
 
-
-# Main window 
+# Main window
 window = Tk()
 window.title("Sorting Algorithms Visualization")
 window.maxsize(1000, 700)
-window.config(bg = WHITE)
-
+window.config(bg=WHITE)
 
 algorithm_name = StringVar()
 speed_name = StringVar()
 data = []
-algo_list = ['Bubble Sort', 'Insertion Sort', 'Selection Sort', 'Merge Sort', 'Quick Sort', 'Heap Sort', 'Counting Sort']
+algo_list = ['Bubble Sort', 'Insertion Sort', 'Selection Sort', 'Merge Sort', 'Quick Sort', 'Heap Sort',
+             'Counting Sort', "Radix sort"]
 speed_list = ['Fast', 'Medium', 'Slow']
 
 
@@ -71,17 +72,19 @@ def set_speed():
 def sort():
     global data
     timeTick = set_speed()
-    
+
     if algo_menu.get() == 'Bubble Sort':
         bubble_sort(data, drawData, timeTick)
+    elif algo_menu.get() == 'Radix Sort':
+        radix_sort(data, drawData, timeTick)
     elif algo_menu.get() == 'Selection Sort':
         selection_sort(data, drawData, timeTick)
     elif algo_menu.get() == 'Insertion Sort':
         insertion_sort(data, drawData, timeTick)
     elif algo_menu.get() == 'Merge Sort':
-        merge_sort(data, 0, len(data)-1, drawData, timeTick)
+        merge_sort(data, 0, len(data) - 1, drawData, timeTick)
     elif algo_menu.get() == 'Quick Sort':
-        quick_sort(data, 0, len(data)-1, drawData, timeTick)
+        quick_sort(data, 0, len(data) - 1, drawData, timeTick)
     elif algo_menu.get() == 'Heap Sort':
         heap_sort(data, drawData, timeTick)
     else:
@@ -89,7 +92,7 @@ def sort():
 
 
 ### User interface ###
-UI_frame = Frame(window, width= 900, height=300, bg=WHITE)
+UI_frame = Frame(window, width=900, height=300, bg=WHITE)
 UI_frame.grid(row=0, column=0, padx=10, pady=5)
 
 l1 = Label(UI_frame, text="Algorithm: ", bg=WHITE)
@@ -112,6 +115,5 @@ b1.grid(row=2, column=1, padx=5, pady=5)
 
 b3 = Button(UI_frame, text="Generate Array", command=generate, bg=LIGHT_GRAY)
 b3.grid(row=2, column=0, padx=5, pady=5)
-
 
 window.mainloop()
